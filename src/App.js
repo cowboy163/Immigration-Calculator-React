@@ -1,9 +1,9 @@
-import EECalculator from "./views/EECalculator/EECalculator";
+import FSWCalculator from "./views/FSWCalculator/FSWCalculator";
 
 const App = () => {
     return(
         <div>
-            <EECalculator/>
+            <FSWCalculator/>
         </div>
     )
 }

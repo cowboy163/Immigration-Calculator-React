@@ -2,14 +2,19 @@ import STable from "./StyledTable.styled";
 
 const StyledTable = ({FSWData}) => {
     const {header, body} = FSWData
-    return(
+    return (
         <STable>
-            <tr>
-                <th colSpan={3}>{header}</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th colSpan={3}>{header}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
             {
                 body && body.map((item, index) =>
-                    <tr>
+                    <tr key={index}>
                         <td>
                             {item?.title}
                         </td>
@@ -22,6 +27,8 @@ const StyledTable = ({FSWData}) => {
                     </tr>
                 )
             }
+            </tbody>
+
         </STable>
     )
 }

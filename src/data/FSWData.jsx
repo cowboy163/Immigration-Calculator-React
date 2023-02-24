@@ -1,19 +1,24 @@
+import Age from "../views/FSWCalculator/Content/Age/Age";
+import Education from "../views/FSWCalculator/Content/Education/Education";
+import Language from "../views/FSWCalculator/Content/Language/Language";
+import Experience from "../views/FSWCalculator/Content/Experience/Experience";
+
 const FSWContent = [
     {
         title: "年龄",
-        content: () => <p>18</p>,
+        content: () => <Age/>,
     },
     {
         title: "学历",
-        content: () => <p>18</p>,
+        content: () => <Education/>,
     },
     {
         title: "语言",
-        content: () => <p>18</p>,
+        content: () => <Language/>,
     },
     {
         title: "工作经验",
-        content: () => <p>18</p>,
+        content: () => <Experience/>,
     },
     {
         title: "工作邀请",
