@@ -12,7 +12,16 @@ code {
     monospace;
 }
 
+:root {
+  --titleBg: #f1b95b;
+  --bodyBg1: #faf9e6;
+  --bodyBg2: #fcfcfd;
+  --border: 1px solid #000;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
+
+
