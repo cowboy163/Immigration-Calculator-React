@@ -5,7 +5,7 @@ const StyledTable = ({FSWData}) => {
     return (
         <STable>
             <thead>
-                <tr>
+                <tr className="styledTable">
                     <th colSpan={3}>{header}</th>
                 </tr>
             </thead>
@@ -14,7 +14,7 @@ const StyledTable = ({FSWData}) => {
 
             {
                 body && body.map((item, index) =>
-                    <tr key={index}>
+                    <tr key={index} className="styledTable">
                         <td>
                             {item?.title}
                         </td>

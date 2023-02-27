@@ -2,6 +2,8 @@ import Age from "../views/FSWCalculator/Content/Age/Age";
 import Education from "../views/FSWCalculator/Content/Education/Education";
 import Language from "../views/FSWCalculator/Content/Language/Language";
 import Experience from "../views/FSWCalculator/Content/Experience/Experience";
+import Invitation from "../views/FSWCalculator/Content/Invitation/Invitation";
+import Adaption from "../views/FSWCalculator/Content/Adaption/Adaption";
 
 const FSWContent = [
     {
@@ -22,11 +24,11 @@ const FSWContent = [
     },
     {
         title: "工作邀请",
-        content: () => <p>18</p>,
+        content: () => <Invitation/>,
     },
     {
         title: "适应性",
-        content: () => <p>18</p>,
+        content: () => <Adaption/>,
     },
 
 ]

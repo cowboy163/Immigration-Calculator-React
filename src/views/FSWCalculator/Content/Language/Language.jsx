@@ -1,15 +1,15 @@
+import RatioSelect from "../../../../components/RatioSelect/RatioSelect";
+
+const options = ["英语", "法语"]
+
+const content = {
+    group: "language",
+    options: options,
+}
+
 const Language = () => {
     return(
-        <div>
-            <label>
-                <input type="radio" name='language'/>
-                <span>英语</span>
-            </label>
-            <label>
-                <input type="radio" name='language'/>
-                <span>法语</span>
-            </label>
-        </div>
+        <RatioSelect content={content}/>
     )
 }
 export default Language

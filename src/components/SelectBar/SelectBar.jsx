@@ -1,16 +1,16 @@
 /*
-interface Item {
+interface options {
     text: string
     value: string
 }
 
-interface options {
+interface content {
     description: string
-    content: Array<Item>
+    options: Array<options>
 }
 */
 
-const SelectBar = ({options}) => {
+const SelectBar = ({content}) => {
 
     const handleChange = evt => {
         console.log('Label', evt.target.selectedOptions[0].label)
@@ -20,10 +20,10 @@ const SelectBar = ({options}) => {
     return(
         <select name="" id="" onChange={evt => {handleChange(evt)}}>
             <option value="" defaultValue hidden>
-                {options.description}
+                {content?.description}
             </option>
             {
-                options.content?.map((item, index) =>
+                content?.options?.map((item, index) =>
                     <option key={index}
                             value={item.value}
                     >

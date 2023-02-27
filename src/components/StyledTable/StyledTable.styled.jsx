@@ -6,7 +6,7 @@ const STable = styled.table`
   background: var(--bodyBg2);
   border: var(--border);
   
-  tr {
+  .styledTable {
     width: 100%;
     
     &:nth-child(2n + 1) {
@@ -22,7 +22,7 @@ const STable = styled.table`
 
     td {
       border: var(--border);
-      padding: 1rem 0.5rem;
+      //padding: 1rem 0.5rem;
       
       &:nth-child(1) {
         width: 20%;

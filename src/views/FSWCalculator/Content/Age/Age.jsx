@@ -1,8 +1,9 @@
+import Input from "../../../../components/Input/Input";
+
+const placeholder = "年龄"
 const Age = () => {
     return(
-        <div>
-            <input type="text"/>
-        </div>
+        <Input placeholder={placeholder}/>
     )
 }
 export default Age
