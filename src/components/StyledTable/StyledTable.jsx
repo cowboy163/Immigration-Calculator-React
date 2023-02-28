@@ -1,35 +1,40 @@
-import STable from "./StyledTable.styled";
+import styled from "styled-components";
 
-const StyledTable = ({FSWData}) => {
-    const {header, body} = FSWData
-    return (
-        <STable>
-            <thead>
-                <tr className="styledTable">
-                    <th colSpan={3}>{header}</th>
-                </tr>
-            </thead>
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bodyBg2);
+  border: var(--border);
 
-            <tbody>
+  tr {
+    width: 100%;
 
-            {
-                body && body.map((item, index) =>
-                    <tr key={index} className="styledTable">
-                        <td>
-                            {item?.title}
-                        </td>
-                        <td>
-                            {item.content()}
-                        </td>
-                        <td>
-                            xxx
-                        </td>
-                    </tr>
-                )
-            }
-            </tbody>
+    &:nth-child(2n + 1) {
+      border: var(--border);
+      background: var(--bodyBg1);
+    }
 
-        </STable>
-    )
-}
+    th {
+      width: 100%;
+      padding: 1rem 0.5rem;
+      background: var(--titleBg);
+    }
+
+    td {
+      border: var(--border);
+
+      &:nth-child(1) {
+        width: 20%;
+      }
+
+      &:nth-child(2) {
+        width: 70%;
+      }
+
+      &:nth-child(3) {
+        width: 10%;
+      }
+    }
+  }
+`
 export default StyledTable

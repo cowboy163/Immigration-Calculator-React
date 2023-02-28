@@ -8,9 +8,10 @@ const StyledSubTable = styled.table`
     border: none;
 
     tr {
-      border: none;
+      border: none !important;
 
       td {
+        background: ${(props) => (props.bgColor? props.bgColor:"white")};
         &:first-child {
           border-left: none !important;
         }
@@ -22,7 +23,7 @@ const StyledSubTable = styled.table`
       
       &:first-child {
         td {
-          border-bottom: none !important;
+          border-top: none !important;
         }
       }
 

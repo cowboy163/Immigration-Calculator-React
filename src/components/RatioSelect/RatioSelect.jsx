@@ -1,9 +1,11 @@
 /*
  * interface options: Array<string>
  *
+ * interface details: Array<string>
+ *
  * interface content {
  *      description?: () => ReactNode,
- *      details: string?,
+ *      details?: details
  *      group: string,
  *      options: options
  * }
@@ -16,7 +18,9 @@ const RatioSelect = ({content}) => {
                 content?.description && content.description()
             }
             {
-                content?.details && <p className="details">{content.details}</p>
+                content?.details && content.details.map((item, index) =>
+                    <p className="details" key={index}>{item}</p>
+                )
             }
             {
                 content.options.map((item, index) =>

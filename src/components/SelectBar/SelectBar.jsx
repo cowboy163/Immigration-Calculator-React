@@ -10,15 +10,13 @@ interface content {
 }
 */
 
-const SelectBar = ({content}) => {
-
-    const handleChange = evt => {
-        console.log('Label', evt.target.selectedOptions[0].label)
-        console.log(evt.target.value)
-    }
+const SelectBar = ({content, onChange, value}) => {
 
     return(
-        <select name="" id="" onChange={evt => {handleChange(evt)}}>
+        <select name="" id=""
+                onChange={onChange}
+                value={value}
+        >
             <option value="" defaultValue hidden>
                 {content?.description}
             </option>

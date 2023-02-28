@@ -1,12 +1,44 @@
-import StyledDiv from "./FSWCalculator.styled";
 import StyledTable from "../../components/StyledTable/StyledTable";
 import FSWData from "../../data/FSWData";
+import {useSelector} from "react-redux";
 
+const {header, body} = FSWData
 const FSWCalculator = () => {
-    return(
-        <StyledDiv>
-            <StyledTable FSWData={FSWData}/>
-        </StyledDiv>
+    const score = useSelector(state => state?.fswCalc?.score)
+    return (
+        <div>
+            <StyledTable>
+                <thead>
+                <tr>
+                    <th colSpan={3}>{header}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {
+                    body && body.map((item, index) =>
+                        <tr key={index}>
+                            <td>
+                                {item?.title}
+                            </td>
+                            <td>
+                                {item.content(index)}
+                            </td>
+                            <td>
+                                {
+                                    score && score[index]
+                                }
+                                xxx
+                            </td>
+                        </tr>
+                    )
+                }
+                </tbody>
+            </StyledTable>
+            <h2>
+                您的FSW分数为: xxx
+            </h2>
+        </div>
     )
 }
 export default FSWCalculator

@@ -8,27 +8,31 @@ import Adaption from "../views/FSWCalculator/Content/Adaption/Adaption";
 const FSWContent = [
     {
         title: "年龄",
-        content: () => <Age/>,
+        content: (index) => <Age index={index}/>,
     },
     {
         title: "学历",
-        content: () => <Education/>,
+        content: (index) => <Education index={index}/>,
     },
     {
         title: "语言",
         content: () => <Language/>,
+        index: 3,
     },
     {
         title: "工作经验",
         content: () => <Experience/>,
+        index: 4,
     },
     {
         title: "工作邀请",
         content: () => <Invitation/>,
+        index: 5,
     },
     {
         title: "适应性",
         content: () => <Adaption/>,
+        index: 6,
     },
 
 ]
