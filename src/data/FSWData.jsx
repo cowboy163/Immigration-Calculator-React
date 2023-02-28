@@ -16,7 +16,7 @@ const FSWContent = [
     },
     {
         title: "语言",
-        content: () => <Language/>,
+        content: (index) => <Language index={index}/>,
         index: 3,
     },
     {

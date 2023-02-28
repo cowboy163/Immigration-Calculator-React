@@ -1,7 +1,16 @@
 import RatioSelect from "../../../../components/RatioSelect/RatioSelect";
 import StyledSubTable from "../../../../components/StyledSubTable/StyledSubTable";
 
-const options = ["无", "有"]
+const options = [
+    {
+        text: "无",
+        value: "no",
+    },
+    {
+        text: "有",
+        value: "yes",
+    },
+]
 const contents = [
     {
         description: () => <p>您配偶 / 伴侣的语言成绩（听力、阅读、写作、口语四项）是否都达到了 <span>CLB / NCLC</span> 4?

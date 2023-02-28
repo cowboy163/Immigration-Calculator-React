@@ -5,6 +5,16 @@ export const fswSlice = createSlice({
     initialState: {
         age: "",
         education: "",
+        language: {
+            english : {
+                selected: false,
+                testName: "",
+                readingScore: "",
+                writingScore: "",
+                listeningScore: "",
+                speakingScore: "",
+            }
+        },
         score: [],
     },
     reducers: {
@@ -13,7 +23,7 @@ export const fswSlice = createSlice({
             // calculate the score
             let index = action.payload[1]
             let dupScore = [...state.score]
-            dupScore[index] = 5
+            dupScore[index] = action.payload[0]? "5":""
             state = {...state, score: dupScore}
             return state
         },
@@ -22,11 +32,36 @@ export const fswSlice = createSlice({
             //calculate the score
             let index = action.payload[1]
             let dupScore = [...state.score]
-            dupScore[index] = 10
+            dupScore[index] = action.payload[0]? "10":""
             state = {...state, score: dupScore}
             return state
         },
+        changeLanguage: (state, action) => {
+            let value = action.payload[0]
+            state = {...state, language: {}}
+            let langDetail = {
+                selected: true,
+                testName: "",
+                readingScore: "",
+                writingScore: "",
+                listeningScore: "",
+                speakingScore: "",
+            }
+            state = {...state, language: {...state.language, [value]:langDetail}}
+
+            //calculate the score
+            let index = action.payload[1]
+            let dupScore = [...state.score]
+            dupScore[index] = action.payload[0]? "20":""
+            state = {...state, score: dupScore}
+
+            return state
+        }
     }
 })
 
-export const {changeAge, changeEducation} = fswSlice.actions
+export const {
+    changeAge,
+    changeEducation,
+    changeLanguage,
+} = fswSlice.actions

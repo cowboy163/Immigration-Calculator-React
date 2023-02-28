@@ -1,7 +1,12 @@
 /*
- * interface options: Array<string>
+ *  interface item {
+ *      text: string
+ *      value: string
+ *  }
  *
- * interface details: Array<string>
+ * type options: Array<item>
+ *
+ * type details: Array<string>
  *
  * interface content {
  *      description?: () => ReactNode,
@@ -11,7 +16,7 @@
  * }
  */
 
-const RatioSelect = ({content}) => {
+const RatioSelect = ({content, onChange}) => {
     return (
         <div>
             {
@@ -24,9 +29,14 @@ const RatioSelect = ({content}) => {
             }
             {
                 content.options.map((item, index) =>
-                    <label key={index}>
-                        <input type="radio" name={content.group}/>
-                        <span>{item}</span>
+                    <label key={index}
+                           onChange={onChange}
+                    >
+                        <input type="radio"
+                               name={content.group}
+                               value={item.value}
+                        />
+                        <span>{item.text}</span>
                     </label>
                 )
             }
