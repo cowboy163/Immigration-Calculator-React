@@ -6,56 +6,72 @@ export const fswSlice = createSlice({
         age: "",
         education: "",
         language: {
-            english : {
-                selected: false,
-                testName: "",
-                readingScore: "",
-                writingScore: "",
-                listeningScore: "",
-                speakingScore: "",
-            }
+            selected: "",
+            test: "",
+            testScore: ["","","",""]
         },
         score: [],
     },
     reducers: {
         changeAge: (state, action) => {
-            state = {...state, age:action.payload[0]}
+            let val = action.payload[0]
+
+            // leave 0 only once
+            val = val.replace(/^0{2,}/, "0")
+            // number only
+            val = val.replace(/[^\d]/g, "")
+            // 2 digit only
+            val = val.slice(0, 2)
+
+            state.age = val
             // calculate the score
             let index = action.payload[1]
-            let dupScore = [...state.score]
-            dupScore[index] = action.payload[0]? "5":""
-            state = {...state, score: dupScore}
-            return state
+            state.score[index] = val? "5":"0"
         },
         changeEducation: (state,action) => {
-            state = {...state, education: action.payload[0]}
+            // update education
+            let val = action.payload[0]
+            state.education = val
+
             //calculate the score
             let index = action.payload[1]
-            let dupScore = [...state.score]
-            dupScore[index] = action.payload[0]? "10":""
-            state = {...state, score: dupScore}
-            return state
+            state.score[index] = val? "10":"0"
         },
         changeLanguage: (state, action) => {
-            let value = action.payload[0]
-            state = {...state, language: {}}
-            let langDetail = {
-                selected: true,
-                testName: "",
-                readingScore: "",
-                writingScore: "",
-                listeningScore: "",
-                speakingScore: "",
-            }
-            state = {...state, language: {...state.language, [value]:langDetail}}
+            // update language
+            let val = action.payload[0]
+            // state.language = fswSlice.getInitialState().language
+            state.language.selected = val
 
             //calculate the score
             let index = action.payload[1]
-            let dupScore = [...state.score]
-            dupScore[index] = action.payload[0]? "20":""
-            state = {...state, score: dupScore}
+            state.score[index] = val? "20":"0"
+        },
+        changeLangTest: (state, action) => {
+            // update language test
+            let val = action.payload[0]
+            state.language.test = val
 
-            return state
+            //calculate the score
+            let index = action.payload[1]
+            state.score[index] = val? "40":"0"
+        },
+        changeTestScore: (state, action) => {
+            let val = action.payload[0]
+            let index = action.payload[1]
+            let testIndex = action.payload[2]
+
+            // leave 0 only once
+            val = val.replace(/^0{2,}/, "0")
+            // number only
+            val = val.replace(/[^\d]/g, "")
+            // 2 digit only
+            val = val.slice(0, 3)
+
+            state.language.testScore[testIndex] = val
+
+            //calculate the score
+            state.score[index] = val? "60":"0"
         }
     }
 })
@@ -64,4 +80,8 @@ export const {
     changeAge,
     changeEducation,
     changeLanguage,
+    changeLangTest,
+    changeTestScore,
 } = fswSlice.actions
+
+export default fswSlice.reducer

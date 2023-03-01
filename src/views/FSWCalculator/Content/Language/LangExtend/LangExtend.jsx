@@ -1,11 +1,11 @@
 import LangDetails from "./LangDetails/LangDetails";
 import OtherLang from "./OtherLang/OtherLang";
 
-const LangExtend = () => {
+const LangExtend = ({index}) => {
     return (
         <div>
-            <LangDetails/>
-            <OtherLang/>
+            <LangDetails index={index}/>
+            <OtherLang index={index}/>
         </div>
     )
 }

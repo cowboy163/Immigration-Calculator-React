@@ -6,7 +6,7 @@ const StyledTable = styled.table`
   background: var(--bodyBg2);
   border: var(--border);
 
-  tr {
+  .styledRow {
     width: 100%;
 
     &:nth-child(2n + 1) {
@@ -20,7 +20,7 @@ const StyledTable = styled.table`
       background: var(--titleBg);
     }
 
-    td {
+    .styledCol {
       border: var(--border);
 
       &:nth-child(1) {

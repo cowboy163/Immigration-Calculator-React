@@ -8,14 +8,6 @@ const Age = ({index}) => {
     const inputValue = useSelector(state => state?.fswCalc?.age)
 
     const handleChange = val => {
-        // leave 0 only once
-        val = val.replace(/^0{2,}/, "0")
-        // number only
-        val = val.replace(/[^\d]/g, "")
-        // 2 digit only
-        val = val.slice(0, 2)
-
-
         dispatch(changeAge([val, index]))
     }
 

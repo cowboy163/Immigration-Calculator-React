@@ -16,7 +16,7 @@
  * }
  */
 
-const RatioSelect = ({content, onChange}) => {
+const RatioSelect = ({content, onChange, selected}) => {
     return (
         <div>
             {
@@ -28,13 +28,14 @@ const RatioSelect = ({content, onChange}) => {
                 )
             }
             {
-                content.options.map((item, index) =>
+                content?.options && content.options.map((item, index) =>
                     <label key={index}
-                           onChange={onChange}
                     >
                         <input type="radio"
                                name={content.group}
                                value={item.value}
+                               onChange={onChange}
+                               checked={item.value === selected}
                         />
                         <span>{item.text}</span>
                     </label>

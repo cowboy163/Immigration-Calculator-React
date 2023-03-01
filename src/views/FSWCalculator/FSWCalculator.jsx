@@ -9,7 +9,7 @@ const FSWCalculator = () => {
         <div>
             <StyledTable>
                 <thead>
-                <tr>
+                <tr className="styledRow">
                     <th colSpan={3}>{header}</th>
                 </tr>
                 </thead>
@@ -17,14 +17,14 @@ const FSWCalculator = () => {
                 <tbody>
                 {
                     body && body.map((item, index) =>
-                        <tr key={index}>
-                            <td>
+                        <tr key={index} className="styledRow">
+                            <td className="styledCol">
                                 {item?.title}
                             </td>
-                            <td>
+                            <td className="styledCol">
                                 {item.content(index)}
                             </td>
-                            <td>
+                            <td className="styledCol">
                                 {
                                     score && score[index]
                                 }

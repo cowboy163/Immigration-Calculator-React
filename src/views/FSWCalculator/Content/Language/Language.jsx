@@ -1,8 +1,8 @@
 import RatioSelect from "../../../../components/RatioSelect/RatioSelect";
 import LangExtend from "./LangExtend/LangExtend";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changeLanguage} from "../../../../features/fswSlice/fswSlice";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const options = [
     {
@@ -22,8 +22,13 @@ const content = {
 
 const Language = ({index}) => {
     const dispatch = useDispatch()
-
     const [showEx, setShowEx] = useState(false)
+    const selected = useSelector(state => state?.fswCalc?.language?.selected)
+    const check = useSelector(state => state)
+
+    useEffect(() => {
+        console.log('check point ', check)
+    }, [check])
 
     const handleChange = val => {
         dispatch(changeLanguage([val, index]))
@@ -34,9 +39,10 @@ const Language = ({index}) => {
         <div>
             <RatioSelect content={content}
                          onChange={evt => handleChange(evt.target.value)}
+                         selected={selected}
             />
             {
-                showEx && <LangExtend/>
+                showEx && <LangExtend index={index}/>
             }
 
         </div>
