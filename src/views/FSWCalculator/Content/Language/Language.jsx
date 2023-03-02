@@ -1,4 +1,4 @@
-import RatioSelect from "../../../../components/RatioSelect/RatioSelect";
+import RatioSelect from "../../../../utility/RatioSelect/RatioSelect";
 import LangExtend from "./LangExtend/LangExtend";
 import {useDispatch, useSelector} from "react-redux";
 import {changeLanguage} from "../../../../features/fswSlice/fswSlice";
@@ -44,7 +44,6 @@ const Language = ({index}) => {
             {
                 showEx && <LangExtend index={index}/>
             }
-
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import Input from "../../../../components/Input/Input";
+import Input from "../../../../utility/Input/Input";
 import {useDispatch, useSelector} from "react-redux";
 import {changeAge} from "../../../../features/fswSlice/fswSlice";
 

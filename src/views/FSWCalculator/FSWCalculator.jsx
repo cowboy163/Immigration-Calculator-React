@@ -1,5 +1,5 @@
-import StyledTable from "../../components/StyledTable/StyledTable";
-import FSWData from "../../data/FSWData";
+import StyledTable from "../../components/CalcTable/CalcTable.styled";
+import FSWData from "../../data/fswCalc/FSWData";
 import {useSelector} from "react-redux";
 
 const {header, body} = FSWData

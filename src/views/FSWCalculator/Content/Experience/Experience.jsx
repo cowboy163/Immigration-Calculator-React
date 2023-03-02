@@ -1,4 +1,4 @@
-import SelectBar from "../../../../components/SelectBar/SelectBar";
+import SelectBar from "../../../../utility/SelectBar/SelectBar";
 
 const options = [
     {

@@ -1,4 +1,4 @@
-import RatioSelect from "../../../../components/RatioSelect/RatioSelect";
+import RatioSelect from "../../../../utility/RatioSelect/RatioSelect";
 
 const options = [
     {

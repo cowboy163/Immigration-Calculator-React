@@ -10,6 +10,11 @@ export const fswSlice = createSlice({
             test: "",
             testScore: ["","","",""]
         },
+        otherLang: {
+            selected: "",
+            test: "",
+            testScore: ["","","",""]
+        },
         score: [],
     },
     reducers: {
@@ -40,7 +45,7 @@ export const fswSlice = createSlice({
         changeLanguage: (state, action) => {
             // update language
             let val = action.payload[0]
-            // state.language = fswSlice.getInitialState().language
+            state.language.testScore = fswSlice.getInitialState().language.testScore
             state.language.selected = val
 
             //calculate the score
@@ -50,6 +55,7 @@ export const fswSlice = createSlice({
         changeLangTest: (state, action) => {
             // update language test
             let val = action.payload[0]
+            state.language.testScore = fswSlice.getInitialState().language.testScore
             state.language.test = val
 
             //calculate the score
@@ -72,6 +78,9 @@ export const fswSlice = createSlice({
 
             //calculate the score
             state.score[index] = val? "60":"0"
+        },
+        changeOtherLangTest: (state, action) => {
+
         }
     }
 })

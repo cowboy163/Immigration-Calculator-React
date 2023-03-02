@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import RatioSelect from "../../../../../../../components/RatioSelect/RatioSelect";
+import RatioSelect from "../../../../../../../utility/RatioSelect/RatioSelect";
 import {changeLangTest} from "../../../../../../../features/fswSlice/fswSlice";
 
 const option1 = [

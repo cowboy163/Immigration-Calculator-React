@@ -1,6 +1,6 @@
-import StyledSubTable from "../../../../../../components/StyledSubTable/StyledSubTable";
+import StyledSubTable from "../../../../../../utility/StyledSubTable/StyledSubTable";
 import LangOptions from "./LangOptions/LangOptions";
-import Input from "../../../../../../components/Input/Input";
+import Input from "../../../../../../utility/Input/Input";
 import {useDispatch, useSelector} from "react-redux";
 import {changeTestScore} from "../../../../../../features/fswSlice/fswSlice";
 

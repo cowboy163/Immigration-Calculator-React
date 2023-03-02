@@ -1,5 +1,5 @@
-import RatioSelect from "../../../../components/RatioSelect/RatioSelect";
-import StyledSubTable from "../../../../components/StyledSubTable/StyledSubTable";
+import RatioSelect from "../../../../utility/RatioSelect/RatioSelect";
+import StyledSubTable from "../../../../utility/StyledSubTable/StyledSubTable";
 
 const options = [
     {

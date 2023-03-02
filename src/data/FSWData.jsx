@@ -1,9 +1,9 @@
-import Age from "../views/FSWCalculator/Content/Age/Age";
-import Education from "../views/FSWCalculator/Content/Education/Education";
-import Language from "../views/FSWCalculator/Content/Language/Language";
-import Experience from "../views/FSWCalculator/Content/Experience/Experience";
-import Invitation from "../views/FSWCalculator/Content/Invitation/Invitation";
-import Adaption from "../views/FSWCalculator/Content/Adaption/Adaption";
+import Age from "../../views/FSWCalculator/Content/Age/Age";
+import Education from "../../views/FSWCalculator/Content/Education/Education";
+import Language from "../../views/FSWCalculator/Content/Language/Language";
+import Experience from "../../views/FSWCalculator/Content/Experience/Experience";
+import Invitation from "../../views/FSWCalculator/Content/Invitation/Invitation";
+import Adaption from "../../views/FSWCalculator/Content/Adaption/Adaption";
 
 const FSWContent = [
     {
@@ -17,7 +17,6 @@ const FSWContent = [
     {
         title: "语言",
         content: (index) => <Language index={index}/>,
-        index: 3,
     },
     {
         title: "工作经验",
