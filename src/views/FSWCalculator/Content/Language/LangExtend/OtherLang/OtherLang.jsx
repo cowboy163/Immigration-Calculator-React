@@ -1,4 +1,4 @@
-import StyledSubTable from "../../../../../../utility/StyledSubTable/StyledSubTable";
+// import StyledSubTable1 from "../../../../../../utility/StyledSubTable/StyledSubTable";
 import RatioSelect from "../../../../../../utility/RatioSelect/RatioSelect";
 import {useState} from "react";
 const options = [
@@ -21,9 +21,9 @@ const OtherLang = () => {
         setSelect(val)
     }
     return(
-        <StyledSubTable bgColor="transparent"
-                        borderFix={true}
-        >
+        // <StyledSubTable1 bgColor="transparent"
+        //                  borderFix={true}
+        // >
             <tbody>
                 <tr>
                     <td>您是否有另外一门语言的成绩</td>
@@ -37,7 +37,7 @@ const OtherLang = () => {
                     </td>
                 </tr>
             </tbody>
-        </StyledSubTable>
+        // </StyledSubTable1>
     )
 }
 export default OtherLang

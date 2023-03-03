@@ -5,6 +5,7 @@ const MainContStyled = styled.table`
   border-collapse: collapse;
   background: var(--bodyBg2);
   border: var(--border);
+  border-spacing: 0;
 
   .styledRow {
     width: 100%;

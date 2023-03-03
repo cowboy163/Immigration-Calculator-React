@@ -1,4 +1,4 @@
-import StyledSubTable from "../../../../../../utility/StyledSubTable/StyledSubTable";
+// import StyledSubTable1 from "../../../../../../utility/StyledSubTable/StyledSubTable";
 import LangOptions from "./LangOptions/LangOptions";
 import Input from "../../../../../../utility/Input/Input";
 import {useDispatch, useSelector} from "react-redux";
@@ -34,9 +34,9 @@ const LangDetails = ({index}) => {
     }
 
     return(
-        <StyledSubTable bgColor="transparent"
-                        borderFix={true}
-        >
+        // <StyledSubTable1 bgColor="transparent"
+        //                  borderFix={true}
+        // >
             <tbody>
                 <tr>
                     <td colSpan={options.length}>
@@ -65,7 +65,7 @@ const LangDetails = ({index}) => {
                     }
                 </tr>
             </tbody>
-        </StyledSubTable>
+        // </StyledSubTable1>
     )
 }
 export default LangDetails

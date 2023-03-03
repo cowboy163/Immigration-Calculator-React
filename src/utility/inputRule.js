@@ -1,4 +1,11 @@
-const NumInput = (val, limitLength) => {
+/*
+ * This function is called 'numInput' and it returns only numbers characters
+ * @function numInput
+ * @param {string} val - original string
+ * @param {number} limitLength - the maximum digit for the return value
+ */
+
+const numInput = (val, limitLength) => {
     // leave 0 only once
     val = val.replace(/^0{2,}/, "0")
     // number only
@@ -8,4 +15,4 @@ const NumInput = (val, limitLength) => {
     return val
 }
 
-export {NumInput}
+export {numInput}

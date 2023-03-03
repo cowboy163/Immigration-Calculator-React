@@ -1,5 +1,5 @@
 import RatioSelect from "../../../../utility/RatioSelect/RatioSelect";
-import StyledSubTable from "../../../../utility/StyledSubTable/StyledSubTable";
+// import StyledSubTable1 from "../../../../utility/StyledSubTable/StyledSubTable";
 
 const options = [
     {
@@ -62,7 +62,7 @@ const contents = [
 
 const Adaption = () => {
     return (
-        <StyledSubTable>
+        // <StyledSubTable1>
             <tbody>
             {
                 contents.map((item, index) =>
@@ -75,7 +75,7 @@ const Adaption = () => {
             }
             </tbody>
 
-        </StyledSubTable>
+        // {/*</StyledSubTable1>*/}
     )
 }
 export default Adaption
