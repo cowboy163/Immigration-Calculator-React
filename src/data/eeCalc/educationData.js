@@ -4,7 +4,7 @@ const description = "—— 请选择您的最高学历 ——"
 
 const educationData = {
     description,
-    educationOptions,
+    options: educationOptions,
 }
 
 export default educationData

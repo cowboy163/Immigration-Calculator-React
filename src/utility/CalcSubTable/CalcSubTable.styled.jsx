@@ -5,13 +5,17 @@ const CalcSubTableStyled = styled.table`
   border-spacing: 0;
   width: calc(100% + 2px);
   margin-left: -1px;
-  margin-top: -1px;
   
   .calcSubTableRow {
     .calcSubTableCol {
       border: var(--border);
+      padding: 0.6rem 0.3rem;
     }
-    
+    &:first-child {
+      .calcSubTableCol {
+        border-top: none;
+      }
+    } 
     &:last-child {
       .calcSubTableCol {
         border-bottom: none;

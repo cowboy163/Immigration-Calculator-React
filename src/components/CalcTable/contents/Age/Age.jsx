@@ -5,13 +5,23 @@
  */
 
 import Input from "../../../../utility/Input/Input";
+import CalcSubTable from "../../../../utility/CalcSubTable/CalcSubTable";
+import CalcSubTableRow from "../../../../utility/CalcSubTable/CalcSubTableRow/CalcSubTableRow";
+import CalcSubTableCol from "../../../../utility/CalcSubTable/CalcSubTableCol/CalcSubTableCol";
 
 const Age = ({inputValue, onChange}) => {
     return (
-        <Input placeholder="年龄"
-               value={inputValue}
-               onChange={onChange}
-        />
+        <CalcSubTable>
+            <CalcSubTableRow>
+                <CalcSubTableCol>
+                    <Input placeholder="年龄"
+                           value={inputValue}
+                           onChange={onChange}
+                    />
+                </CalcSubTableCol>
+            </CalcSubTableRow>
+        </CalcSubTable>
+
     )
 }
 export default Age

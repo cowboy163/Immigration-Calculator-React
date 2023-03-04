@@ -2,6 +2,7 @@
 import AgeView from "../../views/EECalc/Age/AgeView";
 import EducationView from "../../views/EECalc/Education/EducationView";
 import LanguageView from "../../views/EECalc/Language/LanguageView";
+import ExperienceView from "../../views/EECalc/Experience/ExperienceView";
 
 const header = "A. 主申请人核心分数 CORE/HUMAN CAPITAL FACTORS（最高 500 分）"
 const body = [
@@ -19,7 +20,7 @@ const body = [
     },
     {
         title: "工作经验",
-        content: (lineIndex) => <p>test</p>,
+        content: (lineIndex) => <ExperienceView lineIndex={lineIndex}/>,
     },
 ]
 const eePartAData = {

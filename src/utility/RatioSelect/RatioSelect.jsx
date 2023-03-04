@@ -16,9 +16,11 @@
  * }
  */
 
+import RatioSelectStyled from "./RatioSelect.styled";
+
 const RatioSelect = ({content, onChange, selected}) => {
     return (
-        <div>
+        <RatioSelectStyled>
             {
                 content?.description && content.description()
             }
@@ -42,8 +44,7 @@ const RatioSelect = ({content, onChange, selected}) => {
                     </label>
                 )
             }
-
-        </div>
+        </RatioSelectStyled>
 
     )
 }

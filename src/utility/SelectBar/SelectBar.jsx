@@ -13,12 +13,17 @@ const SelectBar = ({content, onChange, value}) => {
         <select name="" id=""
                 value={value}
                 onChange={onChange}
+                style={{
+                    border: "1px solid lightgray",
+                    background: "white",
+                    height: "2.5rem",
+                }}
         >
             <option value="" defaultValue hidden>
                 {content?.description}
             </option>
             {
-                content?.educationOptions?.map((item, index) =>
+                content?.options?.map((item, index) =>
                     <option key={index}
                             value={item.value}
                     >

@@ -46,7 +46,21 @@ const languageData = {
     testCategory,
 }
 
+// other language data
+const otherLanguageSelection = [
+    {
+        text: "是",
+        value: "yes",
+        group: "otherLang",
+    },
+    {
+        text: "否",
+        value: "no",
+        group: "otherLang",
+    },
+]
 
 export {
     languageData,
+    otherLanguageSelection,
 }
