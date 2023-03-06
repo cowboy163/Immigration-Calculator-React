@@ -23,11 +23,25 @@ const body = [
         content: (lineIndex) => <ExperienceView lineIndex={lineIndex}/>,
     },
 ]
+
+// other language data
+const otherSelection = [
+    {
+        text: "是",
+        value: "yes",
+        group: "otherSelection",
+    },
+    {
+        text: "否",
+        value: "no",
+        group: "otherSelection",
+    },
+]
 const eePartAData = {
     header,
     body,
     part: "A",
-    other: () => <p> other test </p>
+    otherData: otherSelection,
 }
 
 export default eePartAData
