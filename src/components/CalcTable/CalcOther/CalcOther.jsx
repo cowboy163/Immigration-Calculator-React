@@ -3,20 +3,23 @@ import CalcSubTable from "../../../utility/CalcSubTable/CalcSubTable";
 import CalcSubTableRow from "../../../utility/CalcSubTable/CalcSubTableRow/CalcSubTableRow";
 import CalcSubTableCol from "../../../utility/CalcSubTable/CalcSubTableCol/CalcSubTableCol";
 import TextAlignCenterStyled from "../../../utility/TextAlignCenter/TextAlignCenter.styled";
-import ChoiceRow from "../contents/Language/ChoiceRow/ChoiceRow";
+import RatioSelect from "../../../utility/RatioSelect/RatioSelect";
 
-const CalcOther = ({CalcOtherChoiceData}) => {
+const CalcOther = ({other}) => {
+    const {content, selected, onChange} = other
     return(
-        <CalcExtraRow>
+        <CalcExtraRow bgColor="#faf9e6">
             <CalcSubTable>
                 <CalcSubTableRow>
                     <CalcSubTableCol>
                         <TextAlignCenterStyled>
-                            <p>您是否有配偶 / 伴侣， 且您的配偶 / 伴侣不是加拿大永久居民（PR）或公民（Citizen）</p>
+                            <RatioSelect content={content}
+                                         selected={selected}
+                                         onChange={onChange}
+                            />
                         </TextAlignCenterStyled>
                     </CalcSubTableCol>
                 </CalcSubTableRow>
-                <ChoiceRow ChoiceData={CalcOtherChoiceData}/>
             </CalcSubTable>
         </CalcExtraRow>
     )

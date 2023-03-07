@@ -46,9 +46,14 @@ const eeExperienceOut = {
     description: "—— 请选择您在加拿大境外的工作年数 ——",
     options: outOptions,
 }
+const eeExperienceInPartB = {
+    description: "—— 请选择您的配偶 / 伴侣在加拿大境内的工作年数 ——",
+    options: inOptions,
+}
 const eeExperienceData = [
     eeExperienceIn,
     eeExperienceOut,
+    eeExperienceInPartB,
 ]
 export default eeExperienceData
 

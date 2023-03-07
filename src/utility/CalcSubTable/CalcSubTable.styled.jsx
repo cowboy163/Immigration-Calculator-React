@@ -8,7 +8,11 @@ const CalcSubTableStyled = styled.table`
   
   .calcSubTableRow {
     .calcSubTableCol {
-      border: var(--border);
+      //border: var(--border);
+      border-top: var(--border);
+      //border-left: var(--border);
+      border-right: var(--border);
+      border-bottom: var(--border);
       padding: 0.6rem 0.3rem;
     }
     &:first-child {

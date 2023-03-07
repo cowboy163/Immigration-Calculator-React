@@ -2,10 +2,9 @@ import {createSlice} from "@reduxjs/toolkit";
 import {numInput} from "../../utility/inputRule";
 import {calcSubScore} from "../../utility/calcScore";
 
-export const eeSlice = createSlice({
-    name: "eeCalc",
+export const eeSlicePartB = createSlice({
+    name: "eeCalcPartB",
     initialState: {
-        age: "",
         education: "",
         language: {
             selected: "",
@@ -18,25 +17,16 @@ export const eeSlice = createSlice({
             test: "",
             testScore: ["","","",""]
         },
-        experience: ["", ""],
-        subScoreA: [],
-        spouseChoice: "",
+        experience: "",
+        subScoreB: [],
     },
     reducers: {
-        changeAge: (state,action)=>{
-            let val = action.payload[0]
-            val = numInput(val, 2)
-            state.age = val
-
-            const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
-        },
         changeEducation: (state,action) => {
             let val = action.payload[0]
             state.education = val
 
             const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.subScoreB[lineIndex] = calcSubScore(val)
         },
         changeLanguage: (state, action) => {
             let val = action.payload[0]
@@ -46,13 +36,13 @@ export const eeSlice = createSlice({
             state.language.selected = val
             state.language.optionIndex = optionIndex
             state.language.test = ""
-            state.language.testScore = eeSlice.getInitialState().language.testScore
+            state.language.testScore = eeSlicePartB.getInitialState().language.testScore
             state.otherLang.selected = ""
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.subScoreB[lineIndex] = calcSubScore(val)
         },
         changeTest: (state, action) => {
             state.language.test = action.payload
-            state.language.testScore = eeSlice.getInitialState().language.testScore
+            state.language.testScore = eeSlicePartB.getInitialState().language.testScore
         },
         changeScore: (state, action) => {
             let lineIndex = action.payload[1]
@@ -61,7 +51,7 @@ export const eeSlice = createSlice({
             let inputIndex = action.payload[2]
             state.language.testScore[inputIndex] = val
 
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.subScoreB[lineIndex] = calcSubScore(val)
         },
         changeOtherLang:(state, action) => {
             state.otherLang.selected = action.payload
@@ -72,7 +62,7 @@ export const eeSlice = createSlice({
         },
         changeOtherLangTest: (state, action) => {
             state.otherLang.test = action.payload
-            state.otherLang.testScore = eeSlice.getInitialState().otherLang.testScore
+            state.otherLang.testScore = eeSlicePartB.getInitialState().otherLang.testScore
         },
         changeOtherLangScore: (state, action) => {
             let lineIndex = action.payload[1]
@@ -81,30 +71,19 @@ export const eeSlice = createSlice({
             let inputIndex = action.payload[2]
             state.otherLang.testScore[inputIndex] = val
 
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.subScoreB[lineIndex] = calcSubScore(val)
         },
         changeInEx: (state, action) => {
             let val = action.payload[0]
-            state.experience[0] = val
+            state.experience = val
 
             const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.subScoreB[lineIndex] = calcSubScore(val)
         },
-        changeOutEx: (state, action) => {
-            let val = action.payload[0]
-            state.experience[1] = val
-
-            const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
-        },
-        changeSpouseChoice: (state, action) => {
-            state.spouseChoice = action.payload
-        }
     }
 })
 
 export const {
-    changeAge,
     changeEducation,
     changeLanguage,
     changeTest,
@@ -113,8 +92,6 @@ export const {
     changeOtherLangTest,
     changeOtherLangScore,
     changeInEx,
-    changeOutEx,
-    changeSpouseChoice,
-} = eeSlice.actions
+} = eeSlicePartB.actions
 
-export default eeSlice.reducer
+export default eeSlicePartB.reducer

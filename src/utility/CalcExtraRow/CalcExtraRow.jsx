@@ -2,7 +2,7 @@ import CalcExtraRowStyled from "./CalcExtraRow.styled";
 
 const CalcExtraRow = ({children, bgColor}) => {
     return(
-        <CalcExtraRowStyled>
+        <CalcExtraRowStyled bgColor={bgColor}>
             <tbody>
             <tr>
                 <td className="extraLine">

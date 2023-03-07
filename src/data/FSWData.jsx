@@ -1,7 +1,7 @@
 import Age from "../../views/FSWCalculator/Content/Age/Age";
 import Education from "../../views/FSWCalculator/Content/Education/Education";
 import Language from "../../views/FSWCalculator/Content/Language/Language";
-import Experience from "../../views/FSWCalculator/Content/Experience/Experience";
+import Experience from "../../views/FSWCalculator/Content/ExperiencePartB/ExperiencePartB";
 import Invitation from "../../views/FSWCalculator/Content/Invitation/Invitation";
 import Adaption from "../../views/FSWCalculator/Content/Adaption/Adaption";
 

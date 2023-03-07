@@ -1,7 +1,7 @@
-import Experience from "../../../components/CalcTable/contents/Experience/Experience";
-import eeExperienceData from "../../../data/eeCalc/eeExperienceData";
+import Experience from "../../../../components/CalcTable/contents/Experience/Experience";
+import eeExperienceData from "../../../../data/eeCalc/eeExperienceData";
 import {useDispatch, useSelector} from "react-redux";
-import {changeInEx, changeOutEx} from "../../../features/eeSlice/eeSlice";
+import {changeInEx, changeOutEx} from "../../../../features/eeSlice/eeSlice";
 
 const ExperienceView = ({lineIndex}) => {
     const dispatch = useDispatch()

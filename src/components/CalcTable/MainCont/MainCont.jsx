@@ -4,9 +4,12 @@
  */
 
 import MainContStyled from "./MainCont.styled";
+import CalcSubTableCol from "../../../utility/CalcSubTable/CalcSubTableCol/CalcSubTableCol";
+import SubScore from "./SubScore";
 
-const MainCont= ({header, body, subScore}) => {
-    return(
+const MainCont = ({header, body, subScore, extra}) => {
+    // console.log("data check ===>", subScore)
+    return (
         <MainContStyled>
             <thead>
             <tr className="styledRow">
@@ -16,6 +19,17 @@ const MainCont= ({header, body, subScore}) => {
 
             <tbody>
             {
+                extra && <tr className="styledRow">
+                    <td className="styledCol"
+                        colSpan={Object.getOwnPropertyNames(body[0]).length + 1}
+                    >
+                        {
+                            extra()
+                        }
+                    </td>
+                </tr>
+            }
+            {
                 body.map((item, index) =>
                     <tr key={index} className="styledRow">
                         <td className="styledCol">
@@ -24,9 +38,16 @@ const MainCont= ({header, body, subScore}) => {
                         <td className="styledCol">
                             {item.content(index)}
                         </td>
+                        {/*{*/}
+                        {/*    subScore && <td className="styledCol">*/}
+                        {/*        {subScore? subScore[index]:""}*/}
+                        {/*    </td>*/}
+                        {/*}*/}
                         <td className="styledCol">
-                            {subScore? subScore[index]:""}
+                            {subScore? <SubScore data={subScore[index]}/> : ""}
                         </td>
+
+
                     </tr>
                 )
             }

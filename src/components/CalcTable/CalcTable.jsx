@@ -6,16 +6,16 @@ import MainCont from "./MainCont/MainCont";
 import SecScore from "./SecScore/SecScore";
 import CalcOther from "./CalcOther/CalcOther";
 
-const CalcTable= ({data, subScore, secScore}) => {
-    const {header, body, part, other} = data
+const CalcTable= ({data, subScore, secScore, other}) => {
+    const {header, body, part, extra} = data
     return(
         <div>
-            <MainCont header={header} body={body} subScore={subScore}/>
+            <MainCont header={header} body={body} subScore={subScore} extra={extra}/>
             {
                 part && <SecScore part={part} secScore={secScore}/>
             }
             {
-                other && <CalcOther other={other}/>
+                other?.content?.options[0]?.text && <CalcOther other={other}/>
             }
         </div>
     )

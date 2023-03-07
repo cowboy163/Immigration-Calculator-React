@@ -1,6 +1,6 @@
-import Age from "../../../components/CalcTable/contents/Age/Age";
+import Age from "../../../../components/CalcTable/contents/Age/Age";
 import {useDispatch, useSelector} from "react-redux";
-import {changeAge} from "../../../features/eeSlice/eeSlice";
+import {changeAge} from "../../../../features/eeSlice/eeSlice";
 
 const AgeView = ({lineIndex}) => {
     const dispatch = useDispatch()

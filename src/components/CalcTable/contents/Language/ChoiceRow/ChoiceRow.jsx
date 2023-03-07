@@ -1,3 +1,8 @@
+/*
+ * @typedef {object} ChoiceData
+ *
+ */
+
 import CalcSubTableRow from "../../../../../utility/CalcSubTable/CalcSubTableRow/CalcSubTableRow";
 import CalcSubTableCol from "../../../../../utility/CalcSubTable/CalcSubTableCol/CalcSubTableCol";
 import RatioSelect from "../../../../../utility/RatioSelect/RatioSelect";
