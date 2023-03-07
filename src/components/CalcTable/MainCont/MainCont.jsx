@@ -4,7 +4,6 @@
  */
 
 import MainContStyled from "./MainCont.styled";
-import CalcSubTableCol from "../../../utility/CalcSubTable/CalcSubTableCol/CalcSubTableCol";
 import SubScore from "./SubScore";
 
 const MainCont = ({header, body, subScore, extra}) => {

@@ -1,7 +1,6 @@
 import CalcSubTable from "../../../utility/CalcSubTable/CalcSubTable";
 import ChoiceRow from "../../../components/CalcTable/contents/Language/ChoiceRow/ChoiceRow";
 import {educationData} from "../../../data/eeCalc/eePartDData";
-import TextAlignCenterStyled from "../../../utility/TextAlignCenter/TextAlignCenter.styled";
 
 const EducationView = ({lineIndex}) => {
     const selected = "0"
