@@ -29,21 +29,23 @@ const RatioSelect = ({content, onChange, selected}) => {
                     <p className="details" key={index}>{item}</p>
                 )
             }
-            {
-                content?.options && content.options.map((item, index) =>
-                    <label key={index}
-                    >
-                        <input type="radio"
-                               name={item.group}
-                               value={item.value}
-                               onChange={onChange}
-                               checked={item.value === selected}
-                               index={index}
-                        />
-                        <span>{item.text}</span>
-                    </label>
-                )
-            }
+            <div className="radioSelectMain">
+                {
+                    content?.options && content?.options.map((item, index) =>
+                        <label key={index}
+                        >
+                            <input type="radio"
+                                   name={item.group}
+                                   value={item.value}
+                                   onChange={onChange}
+                                   checked={item.value === selected}
+                                   index={index}
+                            />
+                            <span>{item.text}</span>
+                        </label>
+                    )
+                }
+            </div>
         </RatioSelectStyled>
 
     )

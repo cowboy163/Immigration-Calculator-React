@@ -6,14 +6,14 @@ const SubScore = ({data}) => {
     return(
         <CalcSubTable>
             {
-                data && (
+                data? (
                     typeof data !== "string"?
                         data.map((item, index) =>
                             <CalcSubTableRow key={index}>
-                                <CalcSubTableCol>
-                                    {item}
-                                </CalcSubTableCol>
-                            </CalcSubTableRow>
+                                 <CalcSubTableCol>
+                                     {item}
+                                 </CalcSubTableCol>
+                             </CalcSubTableRow>
                         )
                         :
                         <CalcSubTableRow>
@@ -23,6 +23,10 @@ const SubScore = ({data}) => {
                         </CalcSubTableRow>
 
                 )
+                    :
+                <tr>
+                    <td></td>
+                </tr>
             }
         </CalcSubTable>
     )

@@ -7,7 +7,6 @@ import MainContStyled from "./MainCont.styled";
 import SubScore from "./SubScore";
 
 const MainCont = ({header, body, subScore, extra}) => {
-    // console.log("data check ===>", subScore)
     return (
         <MainContStyled>
             <thead>

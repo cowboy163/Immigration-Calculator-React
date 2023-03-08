@@ -27,6 +27,7 @@ const EECalcView = () => {
     const subScoreA = useSelector(state => state?.eeCalc?.subScoreA)
     const subScoreB = useSelector(state => state?.eeCalcPartB?.subScoreB)
     const subScoreC = useSelector(state => state?.eeCalcPartC?.subScoreC)
+    const subScoreD = useSelector(state => state?.eeCalcPartD?.subScoreD)
 
     // extraView data
 
@@ -60,7 +61,7 @@ const EECalcView = () => {
                 <div className="eeCalcPage">
                     <CalcTable data={eePartDData}
                                secScore={100}
-                               // subScore={subScoreC}
+                               subScore={subScoreD}
                     />
                 </div>
             </Container>

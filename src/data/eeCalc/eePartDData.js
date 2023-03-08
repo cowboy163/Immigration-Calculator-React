@@ -3,6 +3,8 @@
 import RelativesView from "../../views/EECalc/PartD/RelativesView";
 import LanguageView from "../../views/EECalc/PartD/LanguageView";
 import EducationView from "../../views/EECalc/PartD/EducationView";
+import GuaranteeView from "../../views/EECalc/PartD/GuaranteeView";
+import ProvincialNominationView from "../../views/EECalc/PartD/ProvincialNominationView";
 
 const header = "D. 额外加分（最高 600 分）"
 const body = [
@@ -20,11 +22,11 @@ const body = [
     },
     {
         title: "雇主担保",
-        content: (lineIndex) => <p>test</p>,
+        content: (lineIndex) => <GuaranteeView lineIndex={lineIndex}/>,
     },
     {
         title: "省提名",
-        content: (lineIndex) => <p>test</p>,
+        content: (lineIndex) => <ProvincialNominationView lineIndex={lineIndex}/>,
     },
 ]
 
@@ -81,8 +83,52 @@ const educationData = {
     options: educationOptions,
 }
 
+// Guarantee Data
+const guaranteeOptions= [
+    {
+        text: "无",
+        value: "0",
+        group: "guaranteeOptionPartD",
+    },
+    {
+        text: "TEER 0 ~ 3 级（非 00 大类）",
+        value: "1",
+        group: "guaranteeOptionPartD",
+    },
+    {
+        text: "TEER 00 大类",
+        value: "2",
+        group: "guaranteeOptionPartD",
+    },
+]
+const guaranteeData = {
+    description: () => <p>您是否有 <span>LMIA</span>？</p>,
+    options: guaranteeOptions,
+}
+
+// Provincial Nomination Data
+const provincialNominationOptions= [
+    {
+        text: "无",
+        value: "0",
+        group: "provincialNominationOptionPartD",
+    },
+    {
+        text: "有",
+        value: "1",
+        group: "provincialNominationOptionPartD",
+    },
+]
+const provincialNominationData = {
+    description: () => <p>您是否有省提名？</p>,
+    options: provincialNominationOptions,
+}
+
+
 export {
     eePartDData,
     relativesData,
     educationData,
+    guaranteeData,
+    provincialNominationData,
 }

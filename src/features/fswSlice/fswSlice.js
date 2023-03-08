@@ -1,4 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {numInput} from "../../utility/inputRule";
+import {calcSubScore} from "../../utility/calcScore";
 
 export const fswSlice = createSlice({
     name: "fswCalc",
@@ -7,6 +9,7 @@ export const fswSlice = createSlice({
         education: "",
         language: {
             selected: "",
+            optionIndex: "",
             test: "",
             testScore: ["","","",""]
         },
@@ -15,23 +18,19 @@ export const fswSlice = createSlice({
             test: "",
             testScore: ["","","",""]
         },
-        score: [],
+        experience: "",
+        invitation: "",
+        score: ["","","","","",""],
+        adaptionValue: ["","","","","","",""],
     },
     reducers: {
         changeAge: (state, action) => {
             let val = action.payload[0]
-
-            // leave 0 only once
-            val = val.replace(/^0{2,}/, "0")
-            // number only
-            val = val.replace(/[^\d]/g, "")
-            // 2 digit only
-            val = val.slice(0, 2)
-
+            val = numInput(val, 2)
             state.age = val
-            // calculate the score
-            let index = action.payload[1]
-            state.score[index] = val? "5":"0"
+
+            const lineIndex = action.payload[1]
+            state.score[lineIndex] = calcSubScore(val)
         },
         changeEducation: (state,action) => {
             // update education
@@ -43,45 +42,72 @@ export const fswSlice = createSlice({
             state.score[index] = val? "10":"0"
         },
         changeLanguage: (state, action) => {
-            // update language
             let val = action.payload[0]
-            state.language.testScore = fswSlice.getInitialState().language.testScore
-            state.language.selected = val
+            let lineIndex = action.payload[1]
+            let optionIndex = action.payload[2]
 
-            //calculate the score
-            let index = action.payload[1]
-            state.score[index] = val? "20":"0"
+            state.language.selected = val
+            state.language.optionIndex = optionIndex
+            state.language.test = ""
+            state.language.testScore = fswSlice.getInitialState().language.testScore
+            state.otherLang.selected = ""
+            state.score[lineIndex] = calcSubScore(val)
         },
         changeLangTest: (state, action) => {
             // update language test
-            let val = action.payload[0]
             state.language.testScore = fswSlice.getInitialState().language.testScore
-            state.language.test = val
-
-            //calculate the score
-            let index = action.payload[1]
-            state.score[index] = val? "40":"0"
+            state.language.test = action.payload
         },
         changeTestScore: (state, action) => {
+            let lineIndex = action.payload[1]
             let val = action.payload[0]
-            let index = action.payload[1]
-            let testIndex = action.payload[2]
+            val = numInput(val, 3)
+            let inputIndex = action.payload[2]
+            state.language.testScore[inputIndex] = val
 
-            // leave 0 only once
-            val = val.replace(/^0{2,}/, "0")
-            // number only
-            val = val.replace(/[^\d]/g, "")
-            // 2 digit only
-            val = val.slice(0, 3)
-
-            state.language.testScore[testIndex] = val
-
-            //calculate the score
-            state.score[index] = val? "60":"0"
+            state.score[lineIndex] = calcSubScore(val)
+        },
+        changeOtherLang: (state, action) => {
+            state.otherLang.selected = action.payload
+            if(state.otherLang.selected !== "yes") {
+                state.otherLang.test = ""
+                state.otherLang.testScore = ["", "", "", ""]
+            }
         },
         changeOtherLangTest: (state, action) => {
+            state.otherLang.test = action.payload
+            state.otherLang.testScore = fswSlice.getInitialState().otherLang.testScore
+        },
+        changeOtherLangScore: (state, action) => {
+            let lineIndex = action.payload[1]
+            let val = action.payload[0]
+            val = numInput(val, 3)
+            let inputIndex = action.payload[2]
+            state.otherLang.testScore[inputIndex] = val
 
+            state.score[lineIndex] = calcSubScore(val)
+        },
+        changeExperience: (state, action) => {
+            let val = action.payload[0]
+            state.experience = val
+
+            const lineIndex = action.payload[1]
+            state.score[lineIndex] = calcSubScore(val)
+        },
+        changeInvitation: (state, action) => {
+            let val = action.payload[0]
+            state.invitation = val
+            const lineIndex = action.payload[1]
+            state.score[lineIndex] = calcSubScore(val)
+        },
+        changeAdaption: (state, action) => {
+            let val = action.payload[0]
+            const lineIndex = action.payload[1]
+            const optionIndex = action.payload[2]
+            state.adaptionValue[optionIndex] = val
+            state.score[lineIndex] = calcSubScore(val)
         }
+
     }
 })
 
@@ -91,6 +117,12 @@ export const {
     changeLanguage,
     changeLangTest,
     changeTestScore,
+    changeOtherLang,
+    changeOtherLangTest,
+    changeOtherLangScore,
+    changeExperience,
+    changeInvitation,
+    changeAdaption,
 } = fswSlice.actions
 
 export default fswSlice.reducer
