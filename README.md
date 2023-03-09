@@ -10,8 +10,13 @@
 - Redux
 - React-Router-Dom
 - styled-component
+- csv-parser
 
 ### 3. Log
+
+###### 2023/03/09
+
+- v2.1
 
 ###### 2023/03/08
 
