@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {numInput} from "../../utility/inputRule";
 import {calcSubScore} from "../../utility/calcScore";
+import {useDispatch} from "react-redux";
 
 export const fswSlice = createSlice({
     name: "fswCalc",
@@ -25,12 +26,9 @@ export const fswSlice = createSlice({
     },
     reducers: {
         changeAge: (state, action) => {
-            let val = action.payload[0]
+            let val = action.payload
             val = numInput(val, 2)
             state.age = val
-
-            const lineIndex = action.payload[1]
-            state.score[lineIndex] = calcSubScore(val)
         },
         changeEducation: (state,action) => {
             // update education
@@ -106,6 +104,11 @@ export const fswSlice = createSlice({
             const optionIndex = action.payload[2]
             state.adaptionValue[optionIndex] = val
             state.score[lineIndex] = calcSubScore(val)
+        },
+        changeScore: (state, action) => {
+            const score = action.payload[0]
+            const index = action.payload[1]
+            state.score[index] = score
         }
 
     }
@@ -123,6 +126,7 @@ export const {
     changeExperience,
     changeInvitation,
     changeAdaption,
+    changeScore,
 } = fswSlice.actions
 
 export default fswSlice.reducer

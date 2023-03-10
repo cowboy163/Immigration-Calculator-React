@@ -11,5 +11,9 @@ const headerData = [
         text: "EE分数计算",
         link: "/eecalc"
     },
+    {
+        text: "Test Page",
+        link: "/test"
+    },
 ]
 export default headerData

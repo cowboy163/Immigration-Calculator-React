@@ -1,10 +1,10 @@
 import SamplePage from "../../components/SamplePage/SamplePage";
 
-const HomeView = () => {
+const TestView = () => {
     return(
         <SamplePage>
-            Home Page
+            Test Page
         </SamplePage>
     )
 }
-export default HomeView
+export default TestView
