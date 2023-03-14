@@ -8,6 +8,8 @@ import {
     changeScore,
     changeTest
 } from "../../../../features/eeSlice/eeSlice";
+import {useEffect} from "react";
+import getLanguageScore from "../../../../js/getScoresForEE/getLanguageScore";
 
 const LanguageView = ({lineIndex}) => {
     const dispatch = useDispatch()
@@ -55,6 +57,11 @@ const LanguageView = ({lineIndex}) => {
         testCategory: languageData.testCategory,
         testScore,
     }
+    // calculate language section score
+    const language = useSelector(state => state.eeCalc.language)
+    useEffect(() => {
+        getLanguageScore(language)
+    }, [language])
 
     // second language data
     const otherLangChoiceSelected = useSelector(state => state?.eeCalc?.otherLang?.selected)
