@@ -2,8 +2,7 @@ import csvToArray from "./csvToArray";
 import fixAgeRange from "./fixAgeRange";
 import rangeCheck from "./rangeCheck";
 
-const ruleLocation = 'csv/ageForFSW.csv'
-const getAgeScoreForFSW = async (val) => {
+const getAgeScoreForFSW = async (val, ruleLocation) => {
     return csvToArray(ruleLocation).then(data => {
         if(!val) {
             return
@@ -11,6 +10,7 @@ const getAgeScoreForFSW = async (val) => {
         let arrs = data.data
         let name = Object.keys(arrs[0])
         let index= -1
+        console.log('arrs check ===> ', arrs)
         arrs.forEach((item, i) => {
             let range = fixAgeRange(item[name[0]])
             if(rangeCheck(range, val)) {
@@ -21,7 +21,6 @@ const getAgeScoreForFSW = async (val) => {
             return arrs[index][name[1]]
         }
         console.log("no result found in getAgeScoreForFSW()")
-        return "aaa"
     })
 }
 

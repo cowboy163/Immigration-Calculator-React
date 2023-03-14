@@ -13,10 +13,27 @@ const numInput = (val, limitLength) => {
     val = val.replace(/^0{2,}/, "0")
     // number only
     val = val.replace(/[^\d]/g, "")
-    // 2 digit only
+    // limit digit only
     val = val.slice(0, limitLength)
 
     return val
 }
 
-export {numInput}
+const numInputAndDot = (val, limitLength) => {
+    if(typeof val !== 'string') {
+        return 'wrong input value for numInput()'
+    }
+    // leave 0 only once
+    val = val.replace(/^0{2,}/, "0")
+    // number only
+    val = val.replace(/[^\d.?]/g, "")
+    // limit digit only
+    val = val.slice(0, limitLength)
+
+    return val
+}
+
+export {
+    numInput,
+    numInputAndDot,
+}

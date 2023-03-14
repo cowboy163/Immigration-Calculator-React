@@ -2,18 +2,38 @@ import CalcSubTable from "../../../utility/CalcSubTable/CalcSubTable";
 import {adaptionContents} from "../../../data/fswCalc/adaptionData";
 import ChoiceRow from "../../../components/CalcTable/contents/Language/ChoiceRow/ChoiceRow";
 import {useDispatch, useSelector} from "react-redux";
-import {changeAdaption} from "../../../features/fswSlice/fswSlice";
+import {changeAdaption, changeScore} from "../../../features/fswSlice/fswSlice";
+import {useEffect} from "react";
+import simpleScoreCalc from "../../../js/simpleScoreCalc";
 
 const AdaptionView = ({lineIndex}) => {
     const dispatch = useDispatch()
     const selected = useSelector(state => state.fswCalc.adaptionValue)
+    const handleChange = (evt, index) => {
+        const val = evt.target.value
+        dispatch(changeAdaption([val, index]))
+    }
+    useEffect(() => {
+        let score = 0
+        let flag = false
+        selected.forEach(item => {
+            score += +simpleScoreCalc(item, 5)
+            if(item !== "") {
+                flag = true
+            }
+        })
+        score = +score > 10? String(10) : String(score)
+        if(flag) {
+            dispatch(changeScore([score, lineIndex]))
+        }
+    }, [selected, dispatch, lineIndex])
     return(
         <CalcSubTable>
             {
                 adaptionContents && adaptionContents?.map((item, index) =>
                     <ChoiceRow ChoiceData={
                         {
-                            onChange: evt => {dispatch(changeAdaption([evt.target.value, lineIndex, index]))},
+                            onChange: evt => {handleChange(evt, index)},
                             selected: selected[index],
                             content: item,
                         }

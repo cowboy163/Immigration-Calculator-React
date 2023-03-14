@@ -12,10 +12,11 @@ const AgeView = ({lineIndex}) => {
         dispatch(changeAge(val))
     }
     useEffect(() => {
-        getAgeScoreForFSW(age).then(score => {
+        const ruleLocation = 'csv/ageForFSW.csv'
+        getAgeScoreForFSW(age, ruleLocation).then(score => {
             dispatch(changeScore([score, lineIndex]))
         })
-    }, [age])
+    }, [age, dispatch, lineIndex])
 
     return(
         <Age inputValue={age}

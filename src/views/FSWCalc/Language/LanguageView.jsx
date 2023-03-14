@@ -3,11 +3,14 @@ import {
     changeLangTest,
     changeLanguage,
     changeOtherLang, changeOtherLangScore,
-    changeOtherLangTest,
+    changeOtherLangTest, changeScore,
     changeTestScore,
 } from "../../../features/fswSlice/fswSlice";
 import Language from "../../../components/CalcTable/contents/Language/Language";
 import {languageData, otherLanguageSelection} from "../../../data/languageData";
+import {useEffect, useState} from "react";
+import getLanguageScoreForFSW from "../../../js/getLanguageScoreForFSW/getLanguageScoreForFSW";
+import getRuleLocation from "../../../js/getRuleLocation";
 
 const LanguageView = ({lineIndex}) => {
     const dispatch = useDispatch()
@@ -43,7 +46,7 @@ const LanguageView = ({lineIndex}) => {
     const scoreChange = evt => {
         let val = evt.target.value
         let inputIndex = evt.target.attributes.index.value
-        dispatch(changeTestScore([val, lineIndex, inputIndex]))
+        dispatch(changeTestScore([val, inputIndex]))
     }
     const score = useSelector(state => state.fswCalc.language.testScore)
     const testScore = {
@@ -55,6 +58,44 @@ const LanguageView = ({lineIndex}) => {
         testCategory: languageData.testCategory,
         testScore,
     }
+
+    // calculate language score
+    const language = useSelector(state => state.fswCalc.language)
+    const [firstLangScore, setFirstLangScore] = useState("")
+    const [secondLangScore, setSecondLangScore] = useState("")
+    useEffect(() => {
+        let dir = ['languageForFSW', 'firstLanguage', language.selected, language.test]
+        let ruleLocation = getRuleLocation(dir)
+        if(language.test && language.test !== "") {
+            getLanguageScoreForFSW(language, ruleLocation)
+                .then(data => {
+                    // console.log('language score data check ===>', data)
+                    setFirstLangScore(data)
+                })
+        }
+    }, [language])
+
+    // calculate other language score
+    const otherLang = useSelector(state => state.fswCalc.otherLang)
+    useEffect(() => {
+        let dir = ['languageForFSW', 'secondLanguage', otherLang.test]
+        let ruleLocation = getRuleLocation(dir)
+        if(otherLang.test && otherLang.test !== "") {
+            getLanguageScoreForFSW(otherLang, ruleLocation)
+                .then(data => {
+                    // console.log('other language score data check ===>', data)
+                    setSecondLangScore(data)
+                })
+        }
+    }, [otherLang])
+
+    useEffect(() => {
+        if(firstLangScore && secondLangScore) {
+            let totalLangScore = +firstLangScore + +secondLangScore
+            totalLangScore = String(totalLangScore)
+            dispatch(changeScore([totalLangScore, lineIndex]))
+        }
+    }, [firstLangScore, secondLangScore, dispatch, lineIndex])
 
     // second language data
     const otherLangChoiceSelected = useSelector(state => state.fswCalc.otherLang.selected)
@@ -92,9 +133,9 @@ const LanguageView = ({lineIndex}) => {
     const otherLangScoreChange = evt => {
         let val = evt.target.value
         let inputIndex = evt.target.attributes.index.value
-        dispatch(changeOtherLangScore([val, lineIndex, inputIndex]))
+        dispatch(changeOtherLangScore([val, inputIndex]))
     }
-    const otherLangScore = useSelector(state => state.fswCalc.otherLang?.testScore)
+    const otherLangScore = useSelector(state => state.fswCalc.otherLang.testScore)
     const otherLangTestScore = {
         score: otherLangScore,
         scoreChange: otherLangScoreChange,

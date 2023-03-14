@@ -25,9 +25,6 @@ const fixAgeRange = (input) => {
                 newRes = numbers[0] + '-99'
             }
         })
-    } else {
-        console.log('numbers check', numbers)
-        console.log('letters check', letters)
     }
     if(newRes !== "") {
         return newRes

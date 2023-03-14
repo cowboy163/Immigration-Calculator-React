@@ -24,19 +24,13 @@ export const eeSlice = createSlice({
     },
     reducers: {
         changeAge: (state,action)=>{
-            let val = action.payload[0]
+            let val = action.payload
             val = numInput(val, 2)
             state.age = val
-
-            const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
         },
         changeEducation: (state,action) => {
             let val = action.payload[0]
             state.education = val
-
-            const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
         },
         changeLanguage: (state, action) => {
             let val = action.payload[0]
@@ -99,6 +93,11 @@ export const eeSlice = createSlice({
         },
         changeSpouseChoice: (state, action) => {
             state.spouseChoice = action.payload
+        },
+        changeSubScore: (state, action) => {
+            const score = action.payload[0]
+            const index = action.payload[1]
+            state.subScoreA[index] = score
         }
     }
 })
@@ -115,6 +114,7 @@ export const {
     changeInEx,
     changeOutEx,
     changeSpouseChoice,
+    changeSubScore,
 } = eeSlice.actions
 
 export default eeSlice.reducer
