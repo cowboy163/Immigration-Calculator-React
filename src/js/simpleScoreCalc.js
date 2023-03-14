@@ -4,6 +4,6 @@
  * @param {string} score - how much score get for "yes" option
  */
 const simpleScoreCalc = (val, score) => {
-    return val === "yes"? score : "0"
+    return val === "yes"? String(score) : "0"
 }
 export default simpleScoreCalc

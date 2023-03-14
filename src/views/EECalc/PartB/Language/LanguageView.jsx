@@ -2,18 +2,18 @@ import Language from "../../../../components/CalcTable/contents/Language/Languag
 import {useDispatch, useSelector} from "react-redux";
 import {
     changeLanguage,
-    changeOtherLang, changeOtherLangScore,
-    changeOtherLangTest,
-    changeScore,
+    changeScore, changeSubBScore,
     changeTest
 } from "../../../../features/eeSlice/eeSlicePartB";
-import {languageDataPartB, otherLanguageSelectionPartB} from "../../../../data/eeCalc/PartB/languageDataPartB";
+import {languageDataPartB} from "../../../../data/eeCalc/PartB/languageDataPartB";
+import {useEffect} from "react";
+import getLanguageScore from "../../../../js/getScoresForEE/getLanguageScore";
 
 const LanguageView = ({lineIndex}) => {
     const dispatch = useDispatch()
 
     // language-top data
-    const langSelected = useSelector(state => state?.eeCalcPartB?.language?.selected)
+    const langSelected = useSelector(state => state.eeCalcPartB.language.selected)
     const langChange = evt => {
         const val = evt.target.value
         const index = lineIndex
@@ -27,8 +27,8 @@ const LanguageView = ({lineIndex}) => {
     }
 
     // test data
-    const testSelected = useSelector(state => state?.eeCalcPartB?.language?.test)
-    const langIndex = useSelector(state => state?.eeCalcPartB?.language?.optionIndex)
+    const testSelected = useSelector(state => state?.eeCalcPartB.language.test)
+    const langIndex = useSelector(state => state?.eeCalcPartB.language.optionIndex)
     const testChange = evt => {
         const val = evt.target.value
         dispatch(changeTest(val))
@@ -43,77 +43,40 @@ const LanguageView = ({lineIndex}) => {
     const scoreChange = evt => {
         let val = evt.target.value
         let inputIndex = evt.target.attributes.index.value
-        dispatch(changeScore([val, lineIndex, inputIndex]))
+        dispatch(changeScore([val, inputIndex]))
     }
-    const score = useSelector(state => state?.eeCalcPartB?.language?.testScore)
+    const score = useSelector(state => state.eeCalcPartB.language.testScore)
     const testScore = {
         score,
         scoreChange,
     }
+
     const testData = {
         testChoiceData: testChoiceData,
         testCategory: languageDataPartB.testCategory,
         testScore,
     }
 
-    // second language data
-    const otherLangChoiceSelected = useSelector(state => state?.eeCalcPartB?.otherLang?.selected)
-    const otherLangChoiceChange = evt => {
-        let val = evt.target.value
-        dispatch(changeOtherLang(val))
-    }
-    const otherLangChoice = {
-        content: {options: otherLanguageSelectionPartB},
-        selected: otherLangChoiceSelected,
-        onChange: otherLangChoiceChange,
-    }
-    const otherLangData = {
-        otherLangChoice,
-        otherLangChoiceSelected,
-    }
-    // other language test choice
-    const otherLangTestSelected = useSelector(state => state?.eeCalcPartB?.otherLang?.test)
-    const otherLangTestChange = evt => {
-        const val = evt.target.value
-        dispatch(changeOtherLangTest(val))
-    }
-    let otherLangTestOptions = {}
-    if (langIndex === "0") {
-        otherLangTestOptions = languageDataPartB.options[1].test
-    } else {
-        otherLangTestOptions = languageDataPartB.options[0].test
-    }
-    const otherLangTestChoiceData = {
-        content: {options: otherLangTestOptions},
-        selected: otherLangTestSelected,
-        onChange: otherLangTestChange,
-    }
-    // other language test score
-    const otherLangScoreChange = evt => {
-        let val = evt.target.value
-        let inputIndex = evt.target.attributes.index.value
-        dispatch(changeOtherLangScore([val, lineIndex, inputIndex]))
-    }
-    const otherLangScore = useSelector(state => state?.eeCalcPartB?.otherLang?.testScore)
-    const otherLangTestScore = {
-        score: otherLangScore,
-        scoreChange: otherLangScoreChange,
-    }
-    const otherLangTestData = {
-        testChoiceData: otherLangTestChoiceData,
-        testCategory: languageDataPartB.testCategory,
-        testScore: otherLangTestScore,
-    }
-
     const langData = {
         langTopData,
         testData,
-        otherLangData,
-        otherLangTestData,
     }
 
+    // section B score calculation
+    const language = useSelector(state => state.eeCalcPartB.language)
+    useEffect(() => {
+        const spouse = 'yes'
+        const clbRule = '/csv/EE/spouse/language.csv'
+        if(language.test) {
+            getLanguageScore(language, spouse, clbRule)
+                .then(score => {
+                    dispatch(changeSubBScore([score, lineIndex]))
+                })
+        }
+    }, [language, dispatch, lineIndex])
+
     return (
-        <Language langData={langData}/>
+        <Language langData={langData} secondLangNotShow={true}/>
     )
 }
 export default LanguageView

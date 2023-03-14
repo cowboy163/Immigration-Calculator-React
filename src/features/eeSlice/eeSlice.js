@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {numInput} from "../../utility/inputRule";
-import {calcSubScore} from "../../utility/calcScore";
+import {numInput, numInputAndDot} from "../../utility/inputRule";
 
 export const eeSlice = createSlice({
     name: "eeCalc",
@@ -42,20 +41,17 @@ export const eeSlice = createSlice({
             state.language.test = ""
             state.language.testScore = eeSlice.getInitialState().language.testScore
             state.otherLang.selected = ""
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.subScoreA[lineIndex] = "0"
         },
         changeTest: (state, action) => {
             state.language.test = action.payload
             state.language.testScore = eeSlice.getInitialState().language.testScore
         },
         changeScore: (state, action) => {
-            let lineIndex = action.payload[1]
             let val = action.payload[0]
-            val = numInput(val, 3)
-            let inputIndex = action.payload[2]
+            val = numInputAndDot(val, 3)
+            let inputIndex = action.payload[1]
             state.language.testScore[inputIndex] = val
-
-            state.subScoreA[lineIndex] = calcSubScore(val)
         },
         changeOtherLang:(state, action) => {
             state.otherLang.selected = action.payload
@@ -69,27 +65,16 @@ export const eeSlice = createSlice({
             state.otherLang.testScore = eeSlice.getInitialState().otherLang.testScore
         },
         changeOtherLangScore: (state, action) => {
-            let lineIndex = action.payload[1]
             let val = action.payload[0]
-            val = numInput(val, 3)
-            let inputIndex = action.payload[2]
+            val = numInputAndDot(val, 3)
+            let inputIndex = action.payload[1]
             state.otherLang.testScore[inputIndex] = val
-
-            state.subScoreA[lineIndex] = calcSubScore(val)
         },
         changeInEx: (state, action) => {
-            let val = action.payload[0]
-            state.experience[0] = val
-
-            const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.experience[0] = action.payload
         },
         changeOutEx: (state, action) => {
-            let val = action.payload[0]
-            state.experience[1] = val
-
-            const lineIndex = action.payload[1]
-            state.subScoreA[lineIndex] = calcSubScore(val)
+            state.experience[1] = action.payload
         },
         changeSpouseChoice: (state, action) => {
             state.spouseChoice = action.payload

@@ -83,14 +83,13 @@ const LanguageView = ({lineIndex}) => {
         if(otherLang.test && otherLang.test !== "") {
             getLanguageScoreForFSW(otherLang, ruleLocation)
                 .then(data => {
-                    // console.log('other language score data check ===>', data)
                     setSecondLangScore(data)
                 })
         }
     }, [otherLang])
 
     useEffect(() => {
-        if(firstLangScore && secondLangScore) {
+        if(firstLangScore || (firstLangScore && secondLangScore)) {
             let totalLangScore = +firstLangScore + +secondLangScore
             totalLangScore = String(totalLangScore)
             dispatch(changeScore([totalLangScore, lineIndex]))

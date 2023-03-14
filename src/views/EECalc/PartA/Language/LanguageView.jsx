@@ -5,11 +5,12 @@ import {
     changeLanguage,
     changeOtherLang, changeOtherLangScore,
     changeOtherLangTest,
-    changeScore,
+    changeScore, changeSubScore,
     changeTest
 } from "../../../../features/eeSlice/eeSlice";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import getLanguageScore from "../../../../js/getScoresForEE/getLanguageScore";
+import getSumOfStr from "../../../../js/getSumOfStr";
 
 const LanguageView = ({lineIndex}) => {
     const dispatch = useDispatch()
@@ -45,7 +46,7 @@ const LanguageView = ({lineIndex}) => {
     const scoreChange = evt => {
         let val = evt.target.value
         let inputIndex = evt.target.attributes.index.value
-        dispatch(changeScore([val, lineIndex, inputIndex]))
+        dispatch(changeScore([val, inputIndex]))
     }
     const score = useSelector(state => state?.eeCalc?.language?.testScore)
     const testScore = {
@@ -58,13 +59,39 @@ const LanguageView = ({lineIndex}) => {
         testScore,
     }
     // calculate language section score
+    const [firstLangScore, setFirstLangScore] = useState("")
+    const [secondLangScore, setSecondLangScore] = useState("")
     const language = useSelector(state => state.eeCalc.language)
+    const spouse = useSelector(state => state.eeCalc.spouseChoice)
     useEffect(() => {
-        getLanguageScore(language)
-    }, [language])
+        if(language.test) {
+            getLanguageScore(language, spouse)
+                .then(score => {
+                    setFirstLangScore(score)
+                })
+        }
+    }, [language, spouse])
+
+    // calculate other language score
+    const otherLang = useSelector(state => state.eeCalc.otherLang)
+    useEffect(() => {
+        if(otherLang.test && otherLang.selected === "yes") {
+            getLanguageScore(otherLang, spouse)
+                .then(score => {
+                    setSecondLangScore(score)
+                })
+        }
+    }, [otherLang, spouse])
+
+    useEffect(() => {
+        const total = getSumOfStr(firstLangScore, secondLangScore)
+        if(total && total !== "") {
+            dispatch(changeSubScore([total, lineIndex]))
+        }
+    }, [firstLangScore, secondLangScore, dispatch, lineIndex])
 
     // second language data
-    const otherLangChoiceSelected = useSelector(state => state?.eeCalc?.otherLang?.selected)
+    const otherLangChoiceSelected = useSelector(state => state.eeCalc.otherLang.selected)
     const otherLangChoiceChange = evt => {
         let val = evt.target.value
         dispatch(changeOtherLang(val))
@@ -99,7 +126,7 @@ const LanguageView = ({lineIndex}) => {
     const otherLangScoreChange = evt => {
         let val = evt.target.value
         let inputIndex = evt.target.attributes.index.value
-        dispatch(changeOtherLangScore([val, lineIndex, inputIndex]))
+        dispatch(changeOtherLangScore([val, inputIndex]))
     }
     const otherLangScore = useSelector(state => state?.eeCalc?.otherLang?.testScore)
     const otherLangTestScore = {

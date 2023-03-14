@@ -9,12 +9,18 @@ export const eeSlicePartC = createSlice({
     reducers: {
         changeTopOption: (state, action) => {
             state.topOption = action.payload
+        },
+        changeCScore: (state, action) => {
+            const score = action.payload[0]
+            const index = action.payload[1]
+            state.subScoreC[index] = score
         }
     },
 })
 
 export const {
     changeTopOption,
+    changeCScore,
 
 } = eeSlicePartC.actions
 

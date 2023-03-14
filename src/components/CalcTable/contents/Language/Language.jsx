@@ -2,9 +2,7 @@ import CalcSubTable from "../../../../utility/CalcSubTable/CalcSubTable";
 import ChoiceRow from "./ChoiceRow/ChoiceRow";
 import LanguageMid from "./LanguageMid/LanguageMid";
 import LanguageBottom from "./LanguageBottom/LanguageBottom";
-
-const Language = ({langData}) => {
-
+const Language = ({langData, secondLangNotShow}) => {
     return (
         <CalcSubTable>
             <ChoiceRow ChoiceData={langData.langTopData} rowSpan={4}/>
@@ -12,10 +10,10 @@ const Language = ({langData}) => {
                 langData.langTopData.selected && <LanguageMid testData={langData.testData}/>
             }
             {
-                langData.langTopData.selected && <LanguageBottom otherLangData={langData.otherLangData}/>
+                (langData?.langTopData?.selected && !secondLangNotShow) && <LanguageBottom otherLangData={langData.otherLangData}/>
             }
             {
-                langData.otherLangData.otherLangChoiceSelected === "yes" && <LanguageMid testData={langData.otherLangTestData}/>
+                langData?.otherLangData?.otherLangChoiceSelected === "yes" && <LanguageMid testData={langData.otherLangTestData}/>
             }
 
         </CalcSubTable>

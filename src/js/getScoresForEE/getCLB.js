@@ -1,38 +1,48 @@
+/*
+ * @function getCLB - get the CLB score as array format: ["5", "6", "5", "5"]
+ * @param {object} language - language information include tests and scores
+ * @param {string} ruleLocation
+ */
+
 import csvToArray from "../csvToArray";
-import fixLanguageRange from "../getLanguageScoreForFSW/fixLanguageRange";
+import getNum from "../getNum";
 
 const getCLB = (language, ruleLocation) => {
     return csvToArray(ruleLocation)
         .then(data => {
             const rules = data.data
-            // test
-            console.log('data check', rules)
             let CLB = []
             const name = Object.keys(rules[0])
             const score = language.testScore
             const arrangedScore = [score[2], score[0], score[1], score[3]]
-            // test
-            // console.log('name check ===> ', name, arrangedScore)
             rules.forEach((item, index) => {
                 arrangedScore.forEach((test, i) => {
                     let testIndex = i + 1
+                    let range = getNum(item[name[testIndex]])
+                    let flag = false
                     if(index === 0) {
-                        let range = fixLanguageRange(item[name[testIndex]])
-                        // test
-                        // console.log('range check', range)
                         if(+test >= +range[0]) {
-                            CLB[i] = fixLanguageRange(item[name[0]])
+                            CLB[i] = getNum(item[name[0]])[0]
+                            flag = true
                         }
                     } else if (index === rules.length - 1) {
-                        let range = fixLanguageRange(item[name[testIndex]])
-                        if(+test < range[0]) {
-
+                        if(+test < +range[0]) {
+                            CLB[i] = "0"
+                            flag = true
+                        }
+                    }
+                    if(!flag) {
+                        if(index > 0) {
+                            let rangeUpper = getNum(rules[index - 1][name[testIndex]])[0]
+                            if((+test >= +range[0]) && (+test < +rangeUpper)) {
+                                CLB[i] = getNum(item[name[0]])[0]
+                            }
                         }
 
                     }
                 })
             })
-            console.log('CLB check ===>', CLB)
+            return CLB
         })
 }
 export default getCLB

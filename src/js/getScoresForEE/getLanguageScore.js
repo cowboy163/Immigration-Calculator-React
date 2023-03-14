@@ -1,15 +1,29 @@
 import getRuleLocation from "../getRuleLocation";
 import getCLB from "./getCLB";
+import getLangTotalScore from "./getLangTotalScore";
 
-const getLanguageScore = (language) => {
+const getLanguageScore = (language, spouse, clbRule) => {
     if(language.test) {
-        // test
-        // console.log('language check', language)
-        const dir = ['EE', language.selected, language.test]
+        const dir = ['EE', 'language', language.test]
         const ruleLocation = getRuleLocation(dir)
-        // test
-        // console.log('rule location check', ruleLocation)
-        getCLB(language, ruleLocation)
+
+        return getCLB(language, ruleLocation)
+            .then(CLB => {
+                let clbRuleLocation = ""
+                if(!clbRule) {
+                    clbRuleLocation = '/csv/EE/firstLang.csv'
+                    if(language.selected === "yes") {
+                        clbRuleLocation = '/csv/EE/secondLang.csv'
+                    }
+                } else {
+                    clbRuleLocation = clbRule
+                }
+
+                return getLangTotalScore(CLB, clbRuleLocation, spouse)
+                    .then(score => {
+                        return score
+                    })
+            })
 
     }
 }

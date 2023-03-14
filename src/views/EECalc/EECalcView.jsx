@@ -7,6 +7,8 @@ import {changeSpouseChoice} from "../../features/eeSlice/eeSlice";
 import {eePartBData} from "../../data/eeCalc/eePartBData";
 import {eePartCData} from "../../data/eeCalc/eePartCData";
 import {eePartDData} from "../../data/eeCalc/eePartDData";
+import {useEffect, useState} from "react";
+import getSumArray from "../../js/getSumArray";
 
 const EECalcView = () => {
     const dispatch = useDispatch()
@@ -24,21 +26,29 @@ const EECalcView = () => {
     }
 
     // subScore
-    const subScoreA = useSelector(state => state?.eeCalc?.subScoreA)
-    const subScoreB = useSelector(state => state?.eeCalcPartB?.subScoreB)
-    const subScoreC = useSelector(state => state?.eeCalcPartC?.subScoreC)
-    const subScoreD = useSelector(state => state?.eeCalcPartD?.subScoreD)
+    const subScoreA = useSelector(state => state.eeCalc.subScoreA)
+    const subScoreB = useSelector(state => state.eeCalcPartB.subScoreB)
+    const subScoreC = useSelector(state => state.eeCalcPartC.subScoreC)
+    const subScoreD = useSelector(state => state.eeCalcPartD.subScoreD)
 
-    // extraView data
+    // part A section score
+    const [secScoreA, setSecScoreA] = useState("")
+    useEffect(() => {
+        setSecScoreA(getSumArray(subScoreA))
+    }, [subScoreA])
 
-
+    // part B section score
+    const [secScoreB, setSecScoreB] = useState("")
+    useEffect(() => {
+        setSecScoreB(getSumArray(subScoreB))
+    }, [subScoreB])
     return (
         <EECalcStyled>
             <Container>
                 {/*Part A*/}
                 <div className="eeCalcPage">
                     <CalcTable data={eePartAData}
-                               secScore={100}
+                               secScore={secScoreA}
                                subScore={subScoreA}
                                other={spouseChoiceData}
                     />
@@ -46,7 +56,7 @@ const EECalcView = () => {
                     {
                         spouseChoice === "yes" && <CalcTable data={eePartBData}
                                                              subScore={subScoreB}
-                                                             secScore={100}
+                                                             secScore={secScoreB}
                         />
                     }
                 </div>
