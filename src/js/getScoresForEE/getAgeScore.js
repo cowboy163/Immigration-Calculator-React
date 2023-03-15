@@ -15,8 +15,6 @@ const getAgeScoreForFSW = async (val, ruleLocation, spouse) => {
             }
             return arrs[index][name[2]]
         }
-
-        console.log("no result found in getAgeScoreForFSW()", index)
     })
 }
 

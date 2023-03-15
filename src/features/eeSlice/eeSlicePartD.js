@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {calcSubScore} from "../../utility/calcScore";
 
 export const eeSlicePartD = createSlice({
     name: "eeCalcPartD",
@@ -12,28 +11,21 @@ export const eeSlicePartD = createSlice({
     },
     reducers: {
         changeRelatives: (state, action) => {
-            let val = action.payload[0]
-            state.relativeOption = val
-            const lineIndex = action.payload[1]
-            state.subScoreD[lineIndex] = calcSubScore(val)
+            state.relativeOption = action.payload
         },
         changeEducation: (state, action) => {
-            let val = action.payload[0]
-            state.education = val
-            const lineIndex = action.payload[1]
-            state.subScoreD[lineIndex] = calcSubScore(val)
+            state.education = action.payload
         },
         changeGuarantee: (state, action) => {
-            let val = action.payload[0]
-            state.guarantee = val
-            const lineIndex = action.payload[1]
-            state.subScoreD[lineIndex] = calcSubScore(val)
+            state.guarantee = action.payload
         },
         changeProvincialNomination: (state, action) => {
-            let val = action.payload[0]
-            state.provincialNomination = val
-            const lineIndex = action.payload[1]
-            state.subScoreD[lineIndex] = calcSubScore(val)
+            state.provincialNomination = action.payload
+        },
+        changeSubDScore: (state, action) => {
+            const score = action.payload[0]
+            const index = action.payload[1]
+            state.subScoreD[index] = score
         },
     },
 })
@@ -43,5 +35,6 @@ export const {
     changeEducation,
     changeGuarantee,
     changeProvincialNomination,
+    changeSubDScore,
 } = eeSlicePartD.actions
 export default eeSlicePartD.reducer

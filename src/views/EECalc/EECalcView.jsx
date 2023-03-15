@@ -42,6 +42,28 @@ const EECalcView = () => {
     useEffect(() => {
         setSecScoreB(getSumArray(subScoreB))
     }, [subScoreB])
+
+    // part C section score
+    const [secScoreC, setSecScoreC] = useState("")
+    useEffect(() => {
+        setSecScoreC(getSumArray(subScoreC))
+    }, [subScoreC])
+
+    // part D section score
+    const [secScoreD, setSecScoreD] = useState("")
+    useEffect(() => {
+        setSecScoreD(getSumArray(subScoreD))
+    }, [subScoreD])
+
+    // total score
+    const [totalScore, setTotalScore] = useState("")
+    useEffect(() => {
+        if (secScoreA || secScoreB || secScoreD) {
+            let newArray = [secScoreA, secScoreB, secScoreC, secScoreD]
+            setTotalScore(String(getSumArray(newArray)))
+        }
+    }, [secScoreA, secScoreB, secScoreC, secScoreD])
+
     return (
         <EECalcStyled>
             <Container>
@@ -63,17 +85,20 @@ const EECalcView = () => {
                 {/*Part C*/}
                 <div className="eeCalcPage">
                     <CalcTable data={eePartCData}
-                               secScore={100}
+                               secScore={secScoreC}
                                subScore={subScoreC}
                     />
                 </div>
                 {/*Part D*/}
                 <div className="eeCalcPage">
                     <CalcTable data={eePartDData}
-                               secScore={100}
+                               secScore={secScoreD}
                                subScore={subScoreD}
                     />
                 </div>
+                <h1 className="totalScore">
+                    您的EE分数为：{totalScore}
+                </h1>
             </Container>
         </EECalcStyled>
     )

@@ -3,10 +3,16 @@ const getSumArray = arr => {
     let flag = false
     arr.forEach(item => {
         if(item) {
-            sum += +item
-            flag = true
+            if(typeof item === 'string' || typeof item === 'number') {
+                sum += +item
+                flag = true
+            } else if(typeof item === 'object') {
+                sum += +getSumArray(item)
+                flag = true
+            }
         }
     })
     return flag? String(sum) : ""
 }
 export default getSumArray
+

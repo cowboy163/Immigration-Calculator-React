@@ -1,6 +1,6 @@
 import csvToArray from "../../csvToArray";
 
-const specialCalcLine1 = (education, clb, ruleLocation) => {
+const specialCalcLine3 = (exOut, clb, ruleLocation) => {
     return csvToArray(ruleLocation)
         .then(data => {
             const rules = data.data
@@ -27,20 +27,13 @@ const specialCalcLine1 = (education, clb, ruleLocation) => {
                 }
             }
 
-            // find score
+            // compare with work experience outside of CA to get score
             if(nameIndex > 0) {
-                if(+education < 2) {
-                    score = rules[0][name[nameIndex]]
-                } else if(education >= 2 && education < 5) {
-                    score = rules[1][name[nameIndex]]
-                } else {
-                    let index = +education - 3
-                    score = rules[index][name[nameIndex]]
-                }
+                score = rules[+exOut][name[nameIndex]]
             } else {
                 score = "0"
             }
             return score
         })
 }
-export default specialCalcLine1
+export default specialCalcLine3
