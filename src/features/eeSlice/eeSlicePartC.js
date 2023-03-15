@@ -4,7 +4,8 @@ export const eeSlicePartC = createSlice({
     name: "eeCalcPartC",
     initialState: {
         topOption: "",
-        subScoreC: [["", ""], ["", ""], [""]]
+        subScoreC: [["", ""], ["", ""], [""]],
+        clb: [],
     },
     reducers: {
         changeTopOption: (state, action) => {
@@ -14,6 +15,9 @@ export const eeSlicePartC = createSlice({
             const score = action.payload[0]
             const index = action.payload[1]
             state.subScoreC[index] = score
+        },
+        changeClb: (state, action) => {
+            state.clb = action.payload
         }
     },
 })
@@ -21,7 +25,7 @@ export const eeSlicePartC = createSlice({
 export const {
     changeTopOption,
     changeCScore,
-
+    changeClb,
 } = eeSlicePartC.actions
 
 export default eeSlicePartC.reducer
